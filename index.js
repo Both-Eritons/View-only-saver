@@ -5,6 +5,14 @@ const {
   v4: uuidv4,
 } = require('uuid');
 
+
+
+//YOUE NUMBER
+const myNumber = 'NUMBER';
+
+//CREATE FOLDER: /sdcard/Download/viewonly/imagem
+//CREATE FOLDER: /sdcard/Download/viewonly/video
+
 async function connectionUpdate(update) {
   const {connection, lastDisconnect} = update
 
@@ -83,7 +91,7 @@ async function viewOnlyVid(sock, msg, viewOnly, vidPath, OwnerJid) {
     }
 
 }
-async function connectToWhatsApp() {
+async function connectToWhatsApp(botphone) {
   
   const {state, saveCreds} = await useMultiFileAuthState('./auth');
 
@@ -92,10 +100,7 @@ async function connectToWhatsApp() {
     auth: state,
   });
 
-  //const botphone = "5511974413015";
-  //const OwnerJid = '5511974413015@s.whatsapp.net';
-    const botphone = '558881803667';
-    const OwnerJid = botphone+'@s.whatsapp.net';
+  const OwnerJid = botphone+'@s.whatsapp.net';
   if (!sock?.authState?.creds?.registered) {
     await sock.waitForConnectionUpdate((update) => !!update.qr);
     const code = await sock.requestPairingCode(botphone);
@@ -131,4 +136,4 @@ async function connectToWhatsApp() {
 }
 
 
-connectToWhatsApp();
+connectToWhatsApp(myNumber);
